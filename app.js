@@ -1,18 +1,31 @@
 const express = require('express');
-const ejs=require('ejs');
-const path=require('path');
+const mongoose = require('mongoose');
+const Post = require('./models/Post')
+const ejs = require('ejs');
+const path = require('path');
 
 const app = express();
 
+//connect DB
+mongoose.connect('mongodb://localhost/cleanpost-db', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
 //TEMPLATE ENGINE
-app.set("view engine","ejs");
+app.set("view engine", "ejs");
 
 //MIDDLEWARES
 app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 //ROUTES
-app.get('/', (req, res) => {
-    res.render('index')
+app.get('/',  async (req, res) => {
+    const post= await Post.find({})
+    res.render('index',{
+        post
+    })
 })
 
 app.get('/add_post', (req, res) => {
@@ -26,8 +39,10 @@ app.get('/about', (req, res) => {
 app.get('/post', (req, res) => {
     res.render('post')
 })
-
-
+app.post('/posts', async (req, res) => {
+    await Post.create(req.body)
+        res.redirect('/')
+})
 
 
 const port = 3000;
