@@ -6,7 +6,7 @@
 <%- include('partials/_navigation') -%>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('/img/post-bg.jpg')">
+<header class="masthead" style="background-image: url('//img/post-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -15,7 +15,7 @@
                     <h1><%= post.title %></h1>
                     <span class="meta">Posted by
               <a href="#">Start Bootstrap</a>
-              on August 24, 2019</span>
+              <%=post.dateCreated%></span>
                 </div>
             </div>
         </div>
@@ -30,7 +30,9 @@
                 <h3><%= post.title %></h3>
                 <p><%= post.detail %></p>
                 <a href="/posts/edit/<%= post._id%>" type="button" class="btn btn-primary btn-lg list-inline-item">Update Post</a>
-                <button type="button" class="btn btn-danger btn-lg">Delete</button>
+                <a href="/posts/<%= post._id%>?_method=DELETE" type="button" class="btn btn-danger btn-lg"
+                onclick="return confirm('ARE YOU SURE?')">
+                    Delete</a>
             </div>
         </div>
     </div>

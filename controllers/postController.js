@@ -34,3 +34,9 @@ exports.updatePost = async (req, res) => {
 
     res.redirect(`/posts/${req.params.id}`)
 };
+//Delete Post! **********************************************************************************************************
+exports.deletePost = async (req, res) => {
+    //const post = await Post.findOne({_id: req.params.id});
+    await Post.findByIdAndRemove(req.params.id)
+    res.redirect('/');
+}

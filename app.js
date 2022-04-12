@@ -41,6 +41,7 @@ app.post('/posts', postController.createPost );
 app.get('/',postController.getAllPosts );
 app.get('/posts/:id', postController.getPost);
 app.put('/posts/:id', postController.updatePost);
+app.delete('/posts/:id',postController.deletePost);
 
 
 //**********************************************************************************************************************
