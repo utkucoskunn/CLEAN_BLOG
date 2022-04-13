@@ -12,7 +12,7 @@ const app = express();
 //**********************************************************************************************************************
 //connect DB
 
-mongoose.connect('mongodb://localhost/cleanpost-db', {
+mongoose.connect('mongodb+srv://utkucoskun:88588858@cluster0.sqdmd.mongodb.net/postapp?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
