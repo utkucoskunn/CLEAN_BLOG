@@ -12,9 +12,13 @@ const app = express();
 //**********************************************************************************************************************
 //connect DB
 
-mongoose.connect('mongodb+srv://utkucoskun:88588858@cluster0.sqdmd.mongodb.net/postapp?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://utkucoskun:88588858@cluster0.sqdmd.mongodb.net/cleanpost-db?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+}).then(()=>{
+    console.log(('DB CONNECTED!'))
+}).catch((err)=>{
+    console.log(err)
 });
 
 //**********************************************************************************************************************
@@ -46,7 +50,7 @@ app.delete('/posts/:id',postController.deletePost);
 
 //**********************************************************************************************************************
 
-const port = 3000;
+const port =process.env.PORT||5000;
 app.listen(port, () => {
     console.log(`The server is started on port ${port}.`);
 });
